@@ -4,14 +4,14 @@ Une interface web locale et un firmware **ESP32 en lecture seule** pour observer
 
 > **État du projet : exploration.** La carte et l'interface fonctionnent sur table. La réception sur le véhicule, le point de raccordement et les trames propres à cet Ocean 2023 restent à valider. Aucun bouton de l'interface n'envoie de commande au véhicule.
 
-[Voir l'interface de démonstration](https://california-ocean-camping-2023.romain-jeanneret.chatgpt.site) · [Télécharger le firmware](dist/flash/california-ocean-weact-v1.1-can-auto.bin) · [Télécharger l'interface microSD](dist/flash/microsd-interface.zip)
+[Démo hébergée (accès privé)](https://california-ocean-camping-2023.romain-jeanneret.chatgpt.site) · [Télécharger le firmware](dist/flash/california-ocean-weact-v1.1-wifi-sd.bin) · [Télécharger l'interface microSD](dist/flash/microsd-interface.zip)
 
 ## Ce qui fonctionne
 
 | Fonction | État |
 | --- | --- |
 | Page web servie par l'ESP32 depuis la microSD | Prête, vérifiée sur la carte |
-| Point d'accès Wi-Fi avec mot de passe aléatoire à chaque démarrage | Prêt, vérifié sur la carte |
+| Point d'accès Wi-Fi avec mot de passe fixe lu sur microSD | Firmware compilé, à vérifier sur la carte |
 | Réception CAN avec recherche automatique à 125, 250 et 500 kbit/s | Firmware compilé, à vérifier sur le véhicule |
 | Affichage des trames récentes et compteur de pertes du pilote | Prêt, à vérifier avec un bus actif |
 | Enregistrement et téléchargement de fichiers CSV sur microSD | Prêt, à vérifier avec un bus actif |
@@ -23,17 +23,19 @@ Le pilote CAN est configuré en `TWAI_MODE_LISTEN_ONLY`. La file d'émission est
 
 ### 1. Flasher la WeAct
 
-Retirer la microSD pendant le flash, conformément à la [notice du fabricant](https://github.com/WeActStudio/WeActStudio.CAN485DevBoardV1_ESP32). Brancher la carte en USB-C et flasher le [binaire complet](dist/flash/california-ocean-weact-v1.1-can-auto.bin) avec un outil compatible ESP32 à l'adresse **`0x0`**. Il comprend le bootloader, la table de partitions et l'application.
+Retirer la microSD pendant le flash, conformément à la [notice du fabricant](https://github.com/WeActStudio/WeActStudio.CAN485DevBoardV1_ESP32). Brancher la carte en USB-C et flasher le [binaire complet](dist/flash/california-ocean-weact-v1.1-wifi-sd.bin) avec un outil compatible ESP32 à l'adresse **`0x0`**. Il comprend le bootloader, la table de partitions et l'application.
 
-La [première version, sans écoute CAN](dist/flash/california-ocean-weact-v1.1-complet.bin), reste disponible pour revenir à l'état initial.
+La [version précédente avec réception CAN et mot de passe temporaire](dist/flash/california-ocean-weact-v1.1-can-auto.bin) et la [première version sans écoute CAN](dist/flash/california-ocean-weact-v1.1-complet.bin) restent disponibles.
 
 ### 2. Préparer la microSD
 
-Formater une microSD en **FAT32**, puis extraire [microsd-interface.zip](dist/flash/microsd-interface.zip) à sa racine. Le fichier doit se trouver à l'emplacement `/index.html`. Insérer la carte et redémarrer l'ESP32.
+Formater une microSD en **FAT32**, puis extraire [microsd-interface.zip](dist/flash/microsd-interface.zip) à sa racine. Le fichier doit se trouver à l'emplacement `/index.html`.
+
+Pour garder **le même mot de passe Wi-Fi après chaque redémarrage**, créer à la racine de la microSD un fichier texte brut nommé `wifi.txt`. Sa première ligne contient uniquement le mot de passe choisi, sans guillemets ni espace. Il doit comporter de 8 à 63 caractères ASCII visibles. Ce fichier est personnel : il n'est pas fourni dans le ZIP et ne doit pas être ajouté au dépôt public. Insérer ensuite la carte et redémarrer l'ESP32.
 
 ### 3. Ouvrir l'interface
 
-Ouvrir la console série à **115200 bauds** après le démarrage. Elle affiche le nom du réseau Wi-Fi, son mot de passe et l'adresse de l'interface (habituellement `http://192.168.4.1/`). Le mot de passe change à chaque redémarrage et n'est pas stocké dans ce dépôt.
+Ouvrir la console série à **115200 bauds** après le démarrage. Elle affiche le nom du réseau Wi-Fi et l'adresse de l'interface (habituellement `http://192.168.4.1/`). Si `wifi.txt` est valide, elle confirme que le mot de passe fixe a été chargé, sans afficher sa valeur. Si le fichier est absent ou invalide, la carte crée un mot de passe temporaire et l'affiche dans la console. Aucun mot de passe n'est stocké dans ce dépôt.
 
 Sans véhicule raccordé, la recherche du débit tourne en boucle : c'est le comportement attendu. Une trame CAN valide verrouille le débit. Le menu **Réception CAN** permet alors de lancer une capture, de l'arrêter et de télécharger le CSV.
 

@@ -42,6 +42,7 @@ uint16_t activeBitrateKbps = 0;
 size_t scanIndex = 0;
 uint32_t lastScanMs = 0;
 bool sdReady = false;
+bool wifiPasswordFixed = false;
 bool captureActive = false;
 File captureFile;
 String captureName;
@@ -62,6 +63,25 @@ String accessPointPassword() {
     snprintf(password + i, 9, "%08X", randomValue);
   }
   return String(password);
+}
+
+String passwordFromSd() {
+  if (!sdReady || !SD.exists("/wifi.txt")) return "";
+  File file = SD.open("/wifi.txt", FILE_READ);
+  if (!file) return "";
+  String password;
+  while (file.available() && password.length() < 64) {
+    const char ch = static_cast<char>(file.read());
+    if (ch == '\r' || ch == '\n') break;
+    password += ch;
+  }
+  file.close();
+  bool valid = password.length() >= 8 && password.length() <= 63;
+  for (size_t i = 0; valid && i < password.length(); ++i) {
+    if (password[i] < 33 || password[i] > 126) valid = false;
+  }
+  if (!valid) Serial.println("wifi.txt invalide : utiliser 8 à 63 caractères ASCII visibles, sans espace.");
+  return valid ? password : "";
 }
 
 void sendJson(const String &payload) {
@@ -102,6 +122,8 @@ void handleStatus() {
   }
   payload += ",\"sd_ready\":";
   payload += sdReady ? "true" : "false";
+  payload += ",\"wifi_password_fixed\":";
+  payload += wifiPasswordFixed ? "true" : "false";
   payload += ",\"capture_active\":";
   payload += captureActive ? "true" : "false";
   payload += ",\"capture_frames\":";
@@ -316,13 +338,16 @@ void setup() {
   const uint64_t chipId = ESP.getEfuseMac();
   char ssid[24];
   snprintf(ssid, sizeof(ssid), "California-%06llX", static_cast<unsigned long long>(chipId & 0xFFFFFFULL));
-  const String password = accessPointPassword();
+  String password = passwordFromSd();
+  wifiPasswordFixed = !password.isEmpty();
+  if (!wifiPasswordFixed) password = accessPointPassword();
   WiFi.mode(WIFI_AP);
   if (!WiFi.softAP(ssid, password.c_str(), 1, 0, 2)) {
     Serial.println("Échec du point d'accès Wi-Fi");
   } else {
     Serial.printf("Réseau Wi-Fi : %s\n", ssid);
-    Serial.printf("Mot de passe Wi-Fi : %s\n", password.c_str());
+    if (wifiPasswordFixed) Serial.println("Mot de passe Wi-Fi : fixe, lu depuis la microSD");
+    else Serial.printf("Mot de passe Wi-Fi temporaire : %s\n", password.c_str());
     Serial.printf("Interface : http://%s/\n", WiFi.softAPIP().toString().c_str());
   }
 

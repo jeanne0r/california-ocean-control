@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#132a2a">
+  <title>California Ocean · Espace camping</title>
+  <meta name="description" content="Tableau de bord local pour l'espace camping du California Ocean 6.1">
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17302e;background:#eef3ef;--ink:#17302e;--muted:#71817a;--green:#1e7461;--line:#dce6df;--card:#fff;--sand:#e9d8b8}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:disabled,input:disabled{cursor:not-allowed;opacity:.48}button:focus-visible,input:focus-visible{outline:3px solid #c69442;outline-offset:3px}
+    .shell{max-width:1260px;margin:auto;display:grid;grid-template-columns:248px 1fr;min-height:100vh}.side{background:#132a2a;color:#fff;padding:31px 20px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:12px;padding:0 12px}.brand-icon{width:38px;height:38px;border:1px solid #78928a;border-radius:12px;display:grid;place-items:center;color:#e4c98f;font-size:24px}.brand strong{display:block;font-size:15px;letter-spacing:.03em}.brand small{color:#aebeb8;font-size:12px}.nav-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#829a92;margin:0 12px 10px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#aebeb8;text-align:left;padding:12px 14px;border-radius:12px;display:flex;gap:11px;align-items:center}.nav button.active{color:#fff;background:#245048}.nav button:hover{color:#fff;background:#20403b}.nav .ico{width:23px;text-align:center;font-size:18px}.side-bottom{margin-top:auto;padding:16px 12px;border-top:1px solid #31504b;color:#b8c6c0;font-size:12px;line-height:1.5}.side-bottom strong{display:block;color:#fff;font-weight:600;margin-bottom:5px}.main{padding:36px 42px 60px}.topline{display:flex;align-items:center;justify-content:space-between;gap:20px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin:0 0 7px}.topline h1{font-size:32px;line-height:1.15;letter-spacing:-.04em;margin:0}.sub{margin:8px 0 0;color:var(--muted);font-size:14px}.status-pill{border-radius:999px;padding:9px 13px;display:inline-flex;gap:8px;align-items:center;white-space:nowrap;background:#f7e9cf;color:#815b22;font-size:12px;font-weight:800}.dot{width:8px;height:8px;background:#d79b3e;border-radius:50%}.notice{margin:28px 0 24px;background:#fdf6e8;border:1px solid #e9d5a9;border-radius:15px;padding:15px 18px;color:#725528;font-size:13px;line-height:1.45}.notice b{display:block;margin-bottom:2px}.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:29px 0 14px}.section-title h2{font-size:18px;letter-spacing:-.02em;margin:0}.section-title span{font-size:12px;color:var(--muted)}.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.metric,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 20px #133c2b08}.metric{padding:18px 19px;min-height:135px}.metric .k{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}.metric .v{font-size:27px;letter-spacing:-.04em;font-weight:750;margin-top:23px}.metric .hint{font-size:11px;color:var(--muted);margin-top:3px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px}.card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:19px}.card-icon{width:39px;height:39px;flex:0 0 39px;background:#ecf4ee;border-radius:12px;display:grid;place-items:center;font-size:20px}.card-head h3{font-size:16px;margin:0 0 3px}.card-head p{font-size:12px;color:var(--muted);margin:0}.card-body{min-height:65px}.control-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;font-size:13px}.control-row small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.value{font-size:22px;letter-spacing:-.04em;font-weight:750}.range{width:100%;accent-color:var(--green);margin:16px 0 0}.switch{border:0;background:#dbe6de;width:47px;height:27px;border-radius:999px;padding:3px;transition:background .2s}.switch::before{content:"";display:block;width:21px;height:21px;border-radius:50%;background:white;box-shadow:0 2px 4px #0002;transition:transform .2s}.switch[aria-checked="true"]{background:var(--green)}.switch[aria-checked="true"]::before{transform:translateX(20px)}.seg{display:flex;gap:6px;padding:4px;border-radius:11px;background:#f0f4f0}.seg button{border:0;background:transparent;border-radius:8px;padding:7px 12px;color:#6a7c72;font-size:12px;flex:1}.seg button.selected{background:#fff;color:var(--ink);box-shadow:0 2px 6px #092d1b15;font-weight:700}.bar{height:8px;background:#e8eeea;border-radius:10px;overflow:hidden;margin-top:14px}.bar>i{display:block;height:100%;background:#4b9b7b;border-radius:10px}.bar.water>i{background:#64a7c2}.danger{border-top:1px solid var(--line);margin-top:14px;padding-top:14px}.action{border:1px solid #cbdcd1;background:#f8fbf8;color:#285c4b;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:700}.action:hover:not(:disabled){background:#e8f4e9}.roof-note{color:#986b37;font-size:11px;line-height:1.4;margin:9px 0 0}.footer{color:#84958b;font-size:11px;margin-top:25px}.hidden{display:none!important}
+    @media(max-width:900px){.shell{grid-template-columns:1fr}.side{padding:14px 18px;display:block}.brand{padding:0}.side .nav-label,.side-bottom{display:none}.nav{display:flex;overflow:auto;margin-top:14px;gap:5px}.nav button{flex:0 0 auto;padding:8px 11px;font-size:12px}.nav .ico{font-size:14px;width:auto}.main{padding:27px 18px 45px}}@media(max-width:650px){.topline h1{font-size:28px}.topline{align-items:flex-start}.status-pill{font-size:11px;padding:7px 10px}.overview{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.metric{min-height:115px}.metric .v{margin-top:15px}.card{padding:19px}}
+    .frames{background:#132a2a;color:#dbe9e3;border-radius:12px;padding:13px;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow:auto;min-height:48px}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="brand-icon">◈</div><div><strong>CALIFORNIA</strong><small>Ocean · 2023</small></div></div>
+    <div><p class="nav-label">Espace camping</p><nav class="nav" aria-label="Navigation"><button class="active" data-target="vue"><span class="ico">▦</span>Vue d’ensemble</button><button data-target="confort"><span class="ico">◉</span>Confort</button><button data-target="energie"><span class="ico">ϟ</span>Énergie & eau</button><button data-target="toit"><span class="ico">⌂</span>Toit</button><button id="nav-reception" data-target="reception"><span class="ico">◫</span>Réception CAN</button></nav></div>
+    <div class="side-bottom"><strong>Connexion locale</strong><span id="connection-text">Aucune carte détectée</span><br>Commandes véhicule verrouillées</div>
+  </aside>
+  <main class="main">
+    <header class="topline"><div><p class="eyebrow">Tableau de bord</p><h1>Votre espace camping</h1><p class="sub">California 6.1 Ocean · Interface locale</p></div><div class="status-pill" id="mode"><span class="dot"></span>Mode démonstration</div></header>
+    <div class="notice" role="status" id="notice"><b>Aucune commande envoyée au véhicule</b>Les valeurs ci-dessous sont des exemples. La connexion CAN doit être validée sur ce California avant d’activer les commandes.</div>
+    <section id="vue"><div class="section-title"><h2>En un coup d’œil</h2><span id="updated">Données de démonstration</span></div><div class="overview">
+      <div class="metric"><div class="k">ϟ &nbsp; Batteries auxiliaires</div><div class="v" data-value="battery">82 %</div><div class="hint">Niveau estimé</div></div>
+      <div class="metric"><div class="k">♧ &nbsp; Eau propre</div><div class="v" data-value="water">65 %</div><div class="hint">Réservoir</div></div>
+      <div class="metric"><div class="k">❄ &nbsp; Réfrigérateur</div><div class="v" data-value="fridge">6 °C</div><div class="hint" data-value="fridgeState">En marche</div></div>
+      <div class="metric"><div class="k">♨ &nbsp; Chauffage</div><div class="v" data-value="heat">20 °C</div><div class="hint" data-value="heatState">À l’arrêt</div></div>
+    </div></section>
+    <section id="confort"><div class="section-title"><h2>Confort à bord</h2><span>Réglages de démonstration</span></div><div class="grid">
+      <article class="card"><div class="card-head"><div class="card-icon">☀</div><div><h3>Éclairage camping</h3><p>Ambiance intérieure</p></div></div><div class="card-body"><div class="control-row"><div><b>Lumières</b><small id="lights-label">Allumées</small></div><button class="switch" id="lights" role="switch" aria-label="Éclairage camping" aria-checked="true"></button></div><div class="control-row"><span>Intensité</span><span class="value" id="lights-value">70 %</span></div><input class="range" id="lights-range" type="range" min="0" max="100" value="70" aria-label="Intensité de l’éclairage"></div></article>
+      <article class="card"><div class="card-head"><div class="card-icon">♨</div><div><h3>Chauffage stationnaire</h3><p>Température souhaitée</p></div></div><div class="card-body"><div class="control-row"><span>Consigne</span><span class="value" id="heat-value">20 °C</span></div><input class="range" id="heat-range" type="range" min="15" max="28" value="20" aria-label="Température du chauffage"><div class="control-row"><span>Chauffage</span><button class="switch" id="heat-switch" role="switch" aria-label="Chauffage stationnaire" aria-checked="false"></button></div></div></article>
+      <article class="card"><div class="card-head"><div class="card-icon">❄</div><div><h3>Réfrigérateur</h3><p>Réglage de froid</p></div></div><div class="card-body"><div class="control-row"><span>Niveau</span><span class="value" id="fridge-value">3 / 5</span></div><input class="range" id="fridge-range" type="range" min="1" max="5" value="3" aria-label="Niveau de froid du réfrigérateur"><div class="control-row"><span>Réfrigérateur</span><button class="switch" id="fridge-switch" role="switch" aria-label="Réfrigérateur" aria-checked="true"></button></div></div></article>
+      <article class="card"><div class="card-head"><div class="card-icon">☾</div><div><h3>Mode camping</h3><p>Préférences de séjour</p></div></div><div class="card-body"><div class="seg" role="group" aria-label="Mode camping"><button class="selected" data-mode="jour">Jour</button><button data-mode="nuit">Nuit</button><button data-mode="absent">Absent</button></div><p class="roof-note">Ces profils sont uniquement une prévisualisation locale.</p></div></article>
+    </div></section>
+    <section id="energie"><div class="section-title"><h2>Énergie & eau</h2><span>États à lire sur le véhicule</span></div><div class="grid">
+      <article class="card"><div class="card-head"><div class="card-icon">ϟ</div><div><h3>Autonomie électrique</h3><p>Batteries auxiliaires</p></div></div><div class="control-row"><span>Charge disponible</span><strong data-value="battery">82 %</strong></div><div class="bar"><i id="battery-bar" style="width:82%"></i></div><div class="control-row"><small>Alimentation secteur 230 V</small><small id="shore">Non renseignée</small></div></article>
+      <article class="card"><div class="card-head"><div class="card-icon">♧</div><div><h3>Réservoir d’eau</h3><p>Eau propre</p></div></div><div class="control-row"><span>Niveau</span><strong data-value="water">65 %</strong></div><div class="bar water"><i id="water-bar" style="width:65%"></i></div><div class="control-row"><small>État de la pompe</small><small id="pump">Non renseigné</small></div></article>
+    </div></section>
+    <section id="toit"><div class="section-title"><h2>Toit relevable</h2><span>Commande sensible</span></div><div class="grid"><article class="card"><div class="card-head"><div class="card-icon">⌂</div><div><h3>Toit électrohydraulique</h3><p id="roof-state">Position non vérifiée</p></div></div><div class="control-row"><span>Commande</span><button class="action" id="roof-open" disabled>Ouvrir le toit</button><button class="action" id="roof-close" disabled>Fermer le toit</button></div><p class="roof-note">La commande reste verrouillée jusqu’à validation des trames, de la position du toit et des conditions de sécurité.</p></article></div></section>
+    <section id="reception"><div class="section-title"><h2>Réception CAN</h2><span id="frame-count">0 trame reçue</span></div><div class="grid"><div class="card"><div class="card-head"><div class="card-icon">◫</div><div><h3>Enregistrement microSD</h3><p id="capture-status">Capture arrêtée</p></div></div><p class="sub" id="can-state">Connecter la carte ESP32 pour recevoir des trames</p><div class="control-row"><button class="action" id="capture-start" disabled>Démarrer une capture</button><button class="action" id="capture-stop" disabled>Arrêter</button></div><p class="roof-note" id="capture-error">Les fichiers sont limités à 10 Mo chacun.</p></div><div class="card"><div class="card-head"><div class="card-icon">↧</div><div><h3>Fichiers enregistrés</h3><p>Téléchargement des journaux CSV</p></div></div><div id="capture-list" class="sub">Aucun fichier.</div></div></div><div class="section-title"><h2>Trames récentes</h2><span>16 dernières en mémoire</span></div><pre class="frames" id="frames">Aucune trame.</pre></section>
+    <p class="footer">Prototype local · California Ocean 2023 · Aucune commande envoyée au véhicule.</p>
+  </main>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const setText = (selector, value) => document.querySelectorAll(selector).forEach(el => el.textContent = value);
+  const state = {lights:true, brightness:70, heating:false, heatTarget:20, fridge:true, fridgeLevel:3, mode:'jour'};
+  const render = () => {
+    $('lights').setAttribute('aria-checked', String(state.lights));
+    $('lights-label').textContent = state.lights ? 'Allumées' : 'Éteintes';
+    $('lights-value').textContent = state.brightness + ' %';
+    $('heat-switch').setAttribute('aria-checked', String(state.heating));
+    $('heat-value').textContent = state.heatTarget + ' °C';
+    setText('[data-value="heat"]', state.heatTarget + ' °C');
+    setText('[data-value="heatState"]', state.heating ? 'En marche' : 'À l’arrêt');
+    $('fridge-switch').setAttribute('aria-checked', String(state.fridge));
+    $('fridge-value').textContent = state.fridgeLevel + ' / 5';
+    setText('[data-value="fridgeState"]', state.fridge ? 'En marche' : 'À l’arrêt');
+    document.querySelectorAll('[data-mode]').forEach(btn => btn.classList.toggle('selected', btn.dataset.mode === state.mode));
+  };
+  for (const [id,key] of [['lights','lights'],['heat-switch','heating'],['fridge-switch','fridge']]) $(id).addEventListener('click', () => {state[key]=!state[key];render()});
+  for (const [id,key] of [['lights-range','brightness'],['heat-range','heatTarget'],['fridge-range','fridgeLevel']]) $(id).addEventListener('input', e => {state[key]=Number(e.target.value);render()});
+  document.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => {state.mode=btn.dataset.mode;render()}));
+  document.querySelectorAll('.nav button').forEach(btn => btn.addEventListener('click', () => {document.querySelectorAll('.nav button').forEach(x => x.classList.toggle('active', x===btn));$(btn.dataset.target).scrollIntoView({behavior:'smooth',block:'start'})}));
+  const readDevice = async () => {
+    const response = await fetch('/api/status', {cache:'no-store'});
+    if (!response.ok) return false;
+    const status = await response.json();
+    if (status.device !== 'weact-can485' || status.mode !== 'read_only') return false;
+    $('mode').innerHTML = '<span class="dot"></span>Carte connectée · lecture seule';
+    $('connection-text').textContent = status.bitrate_locked ? 'CAN en écoute seule' : (status.can_ready ? 'Recherche du débit CAN' : 'CAN indisponible');
+    $('notice').innerHTML = '<b>Carte ESP32 connectée en lecture seule</b>Les commandes camping sont verrouillées. Les réglages affichés restent des exemples ; les trames CAN reçues apparaissent dans le diagnostic.';
+    document.querySelectorAll('.switch,.range,[data-mode]').forEach(control => control.disabled = true);
+    $('reception').classList.remove('hidden');
+    $('nav-reception').classList.remove('hidden');
+    $('can-state').textContent = status.bitrate_locked ? `Écoute seule active · débit détecté : ${status.bitrate_kbps} kbit/s` : (status.can_ready ? `Recherche du débit · essai à ${status.bitrate_kbps} kbit/s` : 'Écoute CAN indisponible');
+    $('frame-count').textContent = `${status.frames_received} trame${status.frames_received > 1 ? 's' : ''} reçue${status.frames_received > 1 ? 's' : ''}${status.frames_missed ? ` · ${status.frames_missed} perdue${status.frames_missed > 1 ? 's' : ''}` : ''}`;
+    $('capture-start').disabled = !status.bitrate_locked || !status.sd_ready || status.capture_active;
+    $('capture-stop').disabled = !status.capture_active;
+    $('capture-status').textContent = status.capture_active ? `En cours · ${status.capture_name} · ${status.capture_frames} trames` : 'Capture arrêtée';
+    $('capture-error').textContent = status.capture_error || (status.sd_ready ? 'Les fichiers sont limités à 10 Mo chacun.' : 'Carte microSD absente ou illisible.');
+    if (status.can_ready) {
+      const framesResponse = await fetch('/api/frames', {cache:'no-store'});
+      if (framesResponse.ok) {
+        const data = await framesResponse.json();
+        $('frames').textContent = data.frames.length ? data.frames.slice(-10).map(frame => `${(frame.time_ms / 1000).toFixed(1)}s  ${frame.extended ? 'EXT' : 'STD'}  0x${frame.id.toString(16).toUpperCase()}  ${frame.data}`).join('\n') : 'Aucune trame.';
+      }
+    }
+    if (status.sd_ready) {
+      const capturesResponse = await fetch('/api/captures', {cache:'no-store'});
+      if (capturesResponse.ok) {
+        const captures = (await capturesResponse.json()).captures;
+        $('capture-list').replaceChildren();
+        if (!captures.length) $('capture-list').textContent = 'Aucun fichier.';
+        captures.forEach(file => {
+          const row = document.createElement('div');
+          row.className = 'control-row';
+          const label = document.createElement('span');
+          label.textContent = `${file.name} · ${(file.bytes / 1024).toFixed(1)} Ko`;
+          const link = document.createElement('a');
+          link.className = 'action';
+          link.textContent = 'Télécharger';
+          link.href = '/api/captures/download?name=' + encodeURIComponent(file.name);
+          row.append(label, link);
+          $('capture-list').append(row);
+        });
+      }
+    }
+    return true;
+  };
+  for (const [id,route] of [['capture-start','/api/capture/start'],['capture-stop','/api/capture/stop']]) $(id).addEventListener('click', async () => {
+    $(id).disabled = true;
+    try {
+      const response = await fetch(route,{method:'POST'});
+      if (!response.ok) {
+        const body = await response.json();
+        $('capture-error').textContent = body.error || 'Opération impossible.';
+      } else await readDevice();
+    } catch { $('capture-error').textContent = 'Connexion à la carte perdue.'; }
+  });
+  readDevice().then(connected => {if (connected) setInterval(() => readDevice().catch(() => { $('connection-text').textContent = 'Connexion perdue'; }), 3000)}).catch(() => {});
+  render();
+})();
+</script>
+</body>
+</html>
